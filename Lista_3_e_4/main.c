@@ -68,6 +68,5 @@ int main() {
          x = x + 2;
       }
    return 0;
-   //teste
 }
 #endif
