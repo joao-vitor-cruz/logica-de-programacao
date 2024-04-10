@@ -1,11 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-<<<<<<< HEAD
-#define exercicio2b
-=======
 #define exercicio3
->>>>>>> 7c96201 (Exercício 3 adicionado)
 
 #ifdef exercicio1a
 int main() {
@@ -73,8 +69,6 @@ int main() {
       }
    return 0;
 }
-<<<<<<< HEAD
-=======
 #endif
 
 #ifdef exercicio3
@@ -107,5 +101,4 @@ int main() {
    printf("A soma das idades dos %d indivíduos é %d", k, idade[1]);
    return 0;
 }
->>>>>>> 7c96201 (Exercício 3 adicionado)
 #endif
