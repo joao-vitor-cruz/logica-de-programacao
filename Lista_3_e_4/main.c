@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#define exercicio2b
+#define exercicio3
 
 #ifdef exercicio1a
 int main() {
@@ -67,6 +67,38 @@ int main() {
          multiplo2 = multiplo2 + 8;
          x = x + 2;
       }
+   return 0;
+}
+#endif
+
+#ifdef exercicio3
+int main() {
+   int k = 0, idade[2];
+   idade[0] = -1;
+   idade[1] = 0;
+   while (k <= 0) {
+      printf("Digite quantos indivíduos o programa somará a idade\n");
+      scanf("%d", &k);
+
+      if (k <= 0) {
+         printf("Digite um número maior que 0.\n");
+      }
+   }
+
+   for (int i = 0; i < k; i++) {
+      while(idade[0] < 0) {
+         printf("Digite a idade do indivídio %d: ", i + 1);
+         scanf("%d", &idade[0]);
+         if (idade[0] < 0) {
+            printf("Digite uma idade válida!\n");
+         } else {
+            idade[1] += idade[0];
+         }
+      }
+      idade[0] = -1;
+   }
+
+   printf("A soma das idades dos %d indivíduos é %d", k, idade[1]);
    return 0;
 }
 #endif

@@ -1,7 +1,76 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#define exercicio2a
+#define exercicio1a
+
+//Lista 1A
+#ifdef exercicio1a
+//1. Receba três números que garantam a existência de uma equação do 2º grau. Se houver raízes reais exiba-as, caso contrário informe ao usuário.
+
+int main(){
+    int a, b, c, delta;
+    float x1, x2;
+    printf("Digite três números inteiros para o cálculo de uma operação de segundo grau, onde os números digitados serão respectivamente A, B e C \n(A tem que ser diferente de 0)\n");
+    scanf("%d %d %d", &a, &b, &c);
+    while (a == 0){
+        printf("O número designado para A é inválido, tente outro: ");
+        scanf("%d", &a);
+    }
+
+    delta = (b * b) - (4 * a * c);
+
+    if(delta < 0) {
+        printf("A equação não retornou raízes reais.\n");
+    } else if(delta == 0) {
+        x1 = (-b + sqrt(delta))/(2*a);
+        printf("A raíz retornada é %.1f\n", x1);
+    } else {
+        x1 = (-b - sqrt(delta))/(2*a);
+        x2 = (-b + sqrt(delta))/(2*a);
+        printf("As raízes retornadas são %.1f e %.1f\n", x1, x2);
+    }
+    // x1 = -b - raiz(b^2 - 4.a.c)/2.a
+    // x2 = -b + raiz(b^2 - 4.a.c)/2.a
+    return 0;
+}
+#endif
+
+#ifdef exercicio2a
+//2. - A FATEC RUBENS LARA faz o pagamento de seus professores por hora/aula. Faça um algoritmo que calcule e exiba o salário de um professor. Sabe-se que o valor da hora/aula segue a tabela abaixo: Professor Nível 1 R$55,00 por hora/aula Professor Nível 2 R$67,00 por hora/aula Professor Nível 3 R$78,00 por hora/aula.
+
+int main(){
+    int nivel = 0, aula;
+    float hora, horaPorAula, salario;
+    printf("Para realizar o cálculo do seu salário, insira quantas horas você trabalhou esse mês: ");
+    scanf ("%f", &hora);
+    printf("Insira quantas aulas foram dadas esse mês: ");
+    scanf ("%d", &aula);
+    horaPorAula = hora/aula;
+    while (nivel == 0){
+        printf("Digite em qual nível você está.\nOpções válidas: 1, 2 ou 3\n");
+        scanf ("%d", &nivel);
+        switch (nivel) {
+        case 1:
+            salario = horaPorAula * 55;
+            break;
+        case 2:
+            salario = horaPorAula * 67;
+            break;
+        case 3: 
+            salario = horaPorAula * 78;
+            break;
+        default:
+            printf("Válor inválido!\n");
+            nivel = 0;
+            break;
+        }
+    }
+    printf("Seu salário é de R$ %.2f", salario);
+    return 0;
+}
+#endif
+
+
 //Lista 1B
 #ifdef exercicio1b
 int main() {
@@ -165,73 +234,6 @@ int main(){
         }
     }
     printf ("seu peso ideal é: %.2f kg", pesoIdeal);
-    return 0;
-}
-#endif
-
-//Lista 1A
-#ifdef exercicio1a
-//1. Receba três números que garantam a existência de uma equação do 2º grau. Se houver raízes reais exiba-as, caso contrário informe ao usuário.
-
-int main(){
-    int a, b, c, delta;
-    float x1, x2;
-    printf("Digite três números inteiros para o cálculo de uma operação de segundo grau, onde os números digitados serão respectivamente A, B e C \n(A tem que ser diferente de 0)\n");
-    scanf("%d %d %d", &a, &b, &c);
-    while (a == 0){
-        printf("O número designado para A é inválido, tente outro: ");
-        scanf("%d", &a);
-    }
-
-    delta = (b * b) - (4 * a * c);
-
-    if(delta < 0) {
-        printf("A equação não retornou raízes reais.\n");
-    } else if(delta == 0) {
-        x1 = (-b + sqrt(delta))/(2*a);
-        printf("A raíz retornada é %.1f\n", x1);
-    } else {
-        x1 = (-b - sqrt(delta))/(2*a);
-        x2 = (-b + sqrt(delta))/(2*a);
-        printf("As raízes retornadas são %.1f e %.1f\n", x1, x2);
-    }
-    // x1 = -b - raiz(b^2 - 4.a.c)/2.a
-    // x2 = -b + raiz(b^2 - 4.a.c)/2.a
-    return 0;
-}
-#endif
-
-#ifdef exercicio2a
-//2. - A FATEC RUBENS LARA faz o pagamento de seus professores por hora/aula. Faça um algoritmo que calcule e exiba o salário de um professor. Sabe-se que o valor da hora/aula segue a tabela abaixo: Professor Nível 1 R$55,00 por hora/aula Professor Nível 2 R$67,00 por hora/aula Professor Nível 3 R$78,00 por hora/aula.
-
-int main(){
-    int nivel = 0, aula;
-    float hora, horaPorAula, salario;
-    printf("Para realizar o cálculo do seu salário, insira quantas horas você trabalhou esse mês: ");
-    scanf ("%f", &hora);
-    printf("Insira quantas aulas foram dadas esse mês: ");
-    scanf ("%d", &aula);
-    horaPorAula = hora/aula;
-    while (nivel == 0){
-        printf("Digite em qual nível você está.\nOpções válidas: 1, 2 ou 3\n");
-        scanf ("%d", &nivel);
-        switch (nivel) {
-        case 1:
-            salario = horaPorAula * 55;
-            break;
-        case 2:
-            salario = horaPorAula * 67;
-            break;
-        case 3: 
-            salario = horaPorAula * 78;
-            break;
-        default:
-            printf("Válor inválido!\n");
-            nivel = 0;
-            break;
-        }
-    }
-    printf("Seu salário é de R$ %.2f", salario);
     return 0;
 }
 #endif
