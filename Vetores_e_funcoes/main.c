@@ -38,3 +38,14 @@ int main(){
     return 0;
 }
 #endif
+
+#ifdef exercicio_vetor2
+int main() {
+    int A[6];
+    for (int i = 0; i < 6; i++) {
+        printf("Digite o %dº número", i + 1);
+        scanf("%d", &A[i]);
+    }
+    return 0;
+}
+#endif
