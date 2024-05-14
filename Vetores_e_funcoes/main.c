@@ -1,5 +1,5 @@
 #include <stdio.h>
-#define exercicio_vetor
+#define exercicio_vetor2
 
 #ifdef exercicio_funcao
 float volume;
