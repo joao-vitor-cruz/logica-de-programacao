@@ -123,7 +123,55 @@ int main() {
 #endif
 
 #ifdef ex4
+/*4 - Receba via teclado a distancia em km e a quantidade de litros de gasolina
+    consumidos por um carro em um percurso.
+    Calcule o consumo em km/l e escreva uma mensagem de acordo com a tabela 
+    abaixo:
+    CONSUMO (km/l) MENSAGEM
+    menor que 8    Venda o carro!
+    entre 8 e 14   Economico!
+    maior que 14   Super economico!*/
 
+int main() {
+    setlocale(LC_ALL, "pt_BR.UTF-8");
+    
+    float distancia, gasolina, consumo;
+    
+    printf("Digite respectivamente a distância que seu carro andou e quantos litros de gasolina foram gastos durante este percurso.\n");
+    
+    while (1){
+        printf("Distância (em km):");
+        int verificador = scanf("%f", &distancia);
+        if (verificador != 1 || distancia <= 0) {
+            while(getchar() !='\n');
+            printf("Entrada inválida. Digite um número positivo.\n");
+        } else {
+            break;
+        }
+    }
+    
+    while (1){
+        printf("Gasolina (em L):");
+        int verificador = scanf("%f", &gasolina);
+        if (verificador != 1 || gasolina <= 0) {
+            while(getchar() !='\n');
+            printf("Entrada inválida. Digite um número positivo.\n");
+        } else {
+            break;
+        }
+    }
+    
+    consumo = distancia/gasolina;
+    
+    if (consumo < 8) {
+        printf("Venda o carro!\n");
+    } else if (consumo >= 8 && consumo <= 14) {
+        printf("Economico!\n");
+    } else if (consumo > 14) {
+        printf("Super economico!\n");
+    }
+    return 0;
+}
 #endif
 
 #ifdef ex5
