@@ -86,3 +86,46 @@ int main() {
 	}
 }
 #endif
+
+#ifdef ex3
+/*3 - Escreva um programa que receba via teclado numeros inteiros positivos.
+    Quando o numero digitado for negativo o programa deve parar e calcula a
+    media dos valores positivos digitados.*/
+
+int main() {
+    setlocale(LC_ALL, "pt_BR.UTF-8");
+    
+    int x, verificador;
+    int y = 0;
+    int contador = 0;
+    printf("Digite números inteiros positivos. Quando um número negativo for digitado, retornarei a média dos valores positivos digitados anteriormente.\n");
+    
+    while (1) {
+        verificador = scanf("%d", &x);
+        
+        if (verificador != 1) {
+            while (getchar() != '\n');
+            printf("Você não digitou um número. Tente novamente.\n");
+            continue;
+        } else if (x >= 0) {
+            y += x;
+            contador++;
+        } else if (x < 0) {
+            if (contador == 0) {
+                printf("Não foi digitado nenhum valor positivo.\n");
+            } else {
+                printf("A média dos valores digitados anteriormente é: %.2f\n", (float)y/contador);
+            return 0;
+            }
+        }
+    }
+}
+#endif
+
+#ifdef ex4
+
+#endif
+
+#ifdef ex5
+
+#endif
