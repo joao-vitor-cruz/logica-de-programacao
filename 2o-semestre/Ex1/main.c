@@ -33,6 +33,7 @@ int main() {
         short               long                int
                 float               double              char*/
 
+
 int main() {
     short num1;
     long num2;
@@ -69,12 +70,55 @@ int main() {
 /*3 - Escreva um programa que receba via teclado um tempo em segundos e converta
     para horas, minutos e segundos.
     Ex.: recebe 3850 segundos que converte para 1h 4min 10s.*/
+int main() {
+    int segundos = 0;
+    int minutos = 0;
+    int horas = 0;
+    
+    printf("Digite um tempo em segundos e eu converterei para horas e minutos:");
+    scanf("%d", &segundos);
+        
+    minutos = segundos/60;
+    segundos = segundos%60;
+    horas = minutos/60;
+    minutos = minutos%60;
+        
+    if (minutos == 0 && horas == 0) {
+        printf("Tempo: %ds", segundos);
+    } else if (horas == 0) {
+        printf("Tempo: %dmin %ds", minutos, segundos);
+    } else {
+        printf("Tempo: %dh %dmin %ds", horas, minutos, segundos);
+    }
+    return 0;
+}
 #endif
 #ifdef ex4
 /*4 - Faça um programa para ler um numero inteiro, positivo de tres digitos, e gerar
     outro número formado pelos dígitos invertidos do número lido.
     Ex:   NúmeroLido = 123
-        NúmeroGerado = 321*/
+    NúmeroGerado = 321*/
+
+int main() {
+    int numero, invertido, digito1, digito2, digito3;
+    
+    do {
+        printf("Digite um número inteiro de 3 digitos.\n");
+        scanf("%d", &numero);
+        if (numero < 100 || numero > 999) {
+            printf("O número deve ter 3 dígitos\n");
+        }
+    } while (numero < 100 || numero > 999);
+    
+    digito1 = numero % 10;
+    digito2 = (numero / 10) %10;
+    digito3 = (numero / 100) %10;
+    
+    invertido = (digito1 * 100) + (digito2 * 10) + digito3;
+    
+    printf("Número lido = %d\nNúmero gerado = %d", numero, invertido);
+    return 0;
+}    
 #endif
 #ifdef ex5
 /*5 - Escreva um programa que determine o menor multiplo de um numero inteiro. Este
