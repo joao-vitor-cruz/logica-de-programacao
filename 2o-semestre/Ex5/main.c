@@ -1,33 +1,12 @@
-/*****************************************************************************
-
-			EXERCICIOS
-
-*****************************************************************************
-OBS.: Todos os programa devem ser finalizados pelo usuario.
-
-
-
-3 - Escreva um programa que receba uma string na funcao main(). Faca uma funcao que
-    calcula o comprimento de uma string recebida via teclado. Mostre o valor do
-    comprimento na funcao main().
-    (Declare o vetor como variavel global) (nao pode usar funcao de biblioteca)
-
-4 - Receba via teclado uma cadeia de caracteres (10) e converta todos os caracteres
-    para letras maiusculas. (nao pode usar funcao de biblioteca)
-
-5 - Receba via teclado uma cadeia de caracteres (10) e converta todos os caracteres
-    para letras minusculas. (nao pode usar funcao de biblioteca)
-*/
-
 #include <stdio.h>
-#define ex2
+#define ex1
 
 #ifdef ex1
 /*1 - Receba 2 string de ate 10 caracteres via teclado na funcao main(). Faça uma
     funcao para compara-las e retorne como resultado se são IGUAIS 1 ou se
     DIFERENTES 0 para a funcao main(). Imprima o resultado na funcao main().
-    (Declare os vetores como variavel global) (nao pode usar funcao de biblioteca)
-*/
+    (Declare os vetores como variavel global) (nao pode usar funcao de biblioteca)*/
+
 char str1[11], str2[11];
 void comparação() {
     if (str1[11] == str2[11]) {
@@ -82,5 +61,38 @@ int main() {
 #endif
 
 #ifdef ex3
+/*3 - Escreva um programa que receba uma string na funcao main(). Faca uma funcao que
+    calcula o comprimento de uma string recebida via teclado. Mostre o valor do
+    comprimento na funcao main().
+    (Declare o vetor como variavel global) (nao pode usar funcao de biblioteca)*/
 
+char str[11];
+
+void comprimento(int contador) {
+    for (int i = 0; ;i++) {
+        if (str[i] == '\0') {
+            printf("%d", contador);
+            break;
+        } else {
+            contador++;
+        }
+    }
+}
+int main() {
+    int contador;
+    
+    printf("Digite uma palavra com no máximo 10 letras: ");
+    scanf("%10s", &str[0]);
+    comprimento(contador);
+    return 0;
+}
+#endif
+
+#ifdef ex4
+/*4 - Receba via teclado uma cadeia de caracteres (10) e converta todos os caracteres
+    para letras maiusculas. (nao pode usar funcao de biblioteca)*/
+#endif
+#ifdef ex5
+/*5 - Receba via teclado uma cadeia de caracteres (10) e converta todos os caracteres
+    para letras minusculas. (nao pode usar funcao de biblioteca)*/
 #endif
