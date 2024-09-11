@@ -91,8 +91,32 @@ int main() {
 #ifdef ex4
 /*4 - Receba via teclado uma cadeia de caracteres (10) e converta todos os caracteres
     para letras maiusculas. (nao pode usar funcao de biblioteca)*/
+
+int main() {
+    char str[11];
+
+    printf("Digite uma palavra de 10 dígitos e eu a retornarei maiúscula.\n");
+    scanf("%10s", &str[0]);
+
+    for (int i = 0;str[i] != '\0'; i++)
+        str[i] = str[i] & 0xDF;
+
+    printf("%s", str);
+}
 #endif
+
 #ifdef ex5
 /*5 - Receba via teclado uma cadeia de caracteres (10) e converta todos os caracteres
     para letras minusculas. (nao pode usar funcao de biblioteca)*/
+int main() {
+    char str[11];
+
+    printf("Digite uma palavra de 10 dígitos e eu a retornarei minúscula.\n");
+    scanf("%10s", &str[0]);
+
+    for (int i = 0;str[i] != '\0'; i++)
+        str[i] = str[i] | 0x20;
+
+    printf("%s", str);
+}
 #endif
