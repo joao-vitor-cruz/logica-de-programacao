@@ -125,4 +125,23 @@ int main() {
     multiplo deve ser maior que o limite minimo recebido. Recebe os 2 numeros via
     teclado.
     Ex: menor multiplo de 13 maior que 100. Resultado: 104.*/
+
+int main(){
+    int num, numLimite;
+    int resultado = 1;
+    printf("Digite um número e depois um número limite e eu te direi o menor número multiplo maior que o limite.\n");
+    printf("Número: ");
+    scanf("%d", &num);
+    printf("Limite: ");
+    scanf("%d", &numLimite);
+
+    while (1) {
+        if (num % resultado == 0 || resultado > numLimite) {
+            printf("Menor multiplo de %d maior que %d é %d", num, numLimite, resultado);
+            return 0;
+        } else {
+            resultado++;
+        }
+    }
+}
 #endif
