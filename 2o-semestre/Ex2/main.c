@@ -1,16 +1,17 @@
 #include <stdio.h>
-#include <locale.h>
 #define ex1
 
+/* Duvidas:
+precisa de setlocale?
+
+*/
 #ifdef ex1
 /*1 - Escreva um programa para adivinhar um numero entre 1 e 99 que o usuario
     pensou. Digite via teclado os simbolos =, > ou < a cada pergunta. Utilize o
     comando if-else.*/
 
 int main() {
-    setlocale(LC_ALL, "pt_BR.UTF-8"); 
-    
-	int x = 50;
+    int x = 50;
 	int min = 1;
 	int max = 100;
 	char resposta;
@@ -44,9 +45,7 @@ int main() {
     Conte o n. de tentativas e imprima o resultado no video.*/
 
 int main() {
-    setlocale(LC_ALL, "pt_BR.UTF-8"); 
-    
-	int x = 50;
+    int x = 50;
 	int min = 1;
 	int max = 100;
 	char resposta;
@@ -93,21 +92,15 @@ int main() {
     media dos valores positivos digitados.*/
 
 int main() {
-    setlocale(LC_ALL, "pt_BR.UTF-8");
-    
     int x, verificador;
     int y = 0;
     int contador = 0;
     printf("Digite números inteiros positivos. Quando um número negativo for digitado, retornarei a média dos valores positivos digitados anteriormente.\n");
     
     while (1) {
-        verificador = scanf("%d", &x);
+       scanf("%d", &x);
         
-        if (verificador != 1) {
-            while (getchar() != '\n');
-            printf("Você não digitou um número. Tente novamente.\n");
-            continue;
-        } else if (x >= 0) {
+        if (x >= 0) {
             y += x;
             contador++;
         } else if (x < 0) {
@@ -133,33 +126,13 @@ int main() {
     maior que 14   Super economico!*/
 
 int main() {
-    setlocale(LC_ALL, "pt_BR.UTF-8");
-    
     float distancia, gasolina, consumo;
     
     printf("Digite respectivamente a distância que seu carro andou e quantos litros de gasolina foram gastos durante este percurso.\n");
-    
-    while (1){
-        printf("Distância (em km):");
-        int verificador = scanf("%f", &distancia);
-        if (verificador != 1 || distancia <= 0) {
-            while(getchar() !='\n');
-            printf("Entrada inválida. Digite um número positivo.\n");
-        } else {
-            break;
-        }
-    }
-    
-    while (1){
-        printf("Gasolina (em L):");
-        int verificador = scanf("%f", &gasolina);
-        if (verificador != 1 || gasolina <= 0) {
-            while(getchar() !='\n');
-            printf("Entrada inválida. Digite um número positivo.\n");
-        } else {
-            break;
-        }
-    }
+    printf("Distância (em km):");
+    scanf("%f", &distancia);
+    printf("Gasolina (em L):");
+    scanf("%f", &gasolina);
     
     consumo = distancia/gasolina;
     
@@ -175,5 +148,70 @@ int main() {
 #endif
 
 #ifdef ex5
+/*5 - As ligacoes telefonicas são cobradas pela sua duracao. O sistema registra os
+    instantes em que a ligacao foi iniciada e concluida.
+    Escreva um programa que recebe via teclado dois instantes dados em
+    horas, minutos e segundo e determina o intervalo de tempo
+    (em horas, minutos e segundos) decorrido entre eles.*/
+
+int main() {
+    int horas1, minutos1, segundos1, horas2, minutos2, segundos2, peso1, peso2, horasR, minutosR, segundosR;
+    printf("Digite o primeiro período:\n");
+    printf("Hora(s): ");
+    scanf("%d", &horas1);
+    printf("Minuto(s): ");
+    scanf("%d", &minutos1);
+    printf("Segundo(s): ");
+    scanf("%d", &segundos1);
+    printf("\nDigite o segundo período:\n");
+    printf("Hora(s): ");
+    scanf("%d", &horas2);
+    printf("Minuto(s): ");
+    scanf("%d", &minutos2);
+    printf("Segundo(s): ");
+    scanf("%d", &segundos2);
+
+
+    if (segundos1 >= 60) {
+        minutos1 += segundos1/60;
+        segundos1 %= 60;
+    }
+    if (minutos1 >= 60) {
+        horas1 += minutos1/60;
+        minutos1 %= 60;
+    }
+
+    if (segundos2 >= 60) {
+        minutos2 += segundos2/60;
+        segundos2 %= 60;
+    }
+    if (minutos2 >= 60) {
+        horas2 += minutos2/60;
+        minutos2 %= 60;
+    }
+    
+    peso1 = horas1*3600 + minutos1*60 + segundos1;
+    peso2 = horas2*3600 + minutos2*60 + segundos2;
+
+    if (peso1 > peso2) {
+        peso1 -= peso2;
+        horasR = peso1/3600;
+        peso1 %= 3600;
+        minutosR = peso1/60;
+        peso1 %= 60;
+        segundosR = peso1;
+
+        printf("O intervalo de tempo decorrido entre %dh %dmin %ds e %dh %dmin %ds foi %dh %dmin %ds", horas1, minutos1, segundos1, horas2, minutos2, segundos2, horasR, minutosR, segundosR);
+    } else if (peso1 < peso2) {
+        peso2 -= peso1;
+        horasR = peso2/3600;
+        peso2 %= 3600;
+        minutosR = peso2/60;
+        peso2 %= 60;
+        segundosR = peso2;
+
+        printf("O intervalo de tempo decorrido entre %dh %dmin %ds e %dh %dmin %ds foi %dh %dmin %ds", horas2, minutos2, segundos2, horas1, minutos1, segundos1, horasR, minutosR, segundosR);
+    }
+}
 
 #endif
