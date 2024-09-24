@@ -1,5 +1,5 @@
 #include <stdio.h>
-#define ex1
+#define ex2
 
 #ifdef ex1
 /*1 - Escreva um programa que receba um numero N via teclado. Escreva uma funcao
@@ -73,31 +73,46 @@ void positivos(int a, int b) {
                 b++;
             }
         }
-        printf("é: %d", soma);
+        printf("é: %d\n", soma);
     }
 }
 
+//nao funcionando
 void negativos(int a, int b) {
     if (verificar(a) == 0 && verificar(b) == 0) {
         int multiplicacao = 1;
         printf ("A multiplicação dos N digitos entre %d e %d ", a, b);
         
         if (a > b) {
-            for (int i = a; i > (b); i--) {
-                printf("%d", a+1);
-                multiplicacao *= (a + 1);
+            for (int i = a; i < (b - 1); i++) {
+                printf("%d\n", a+1);
+                multiplicacao *= (a - 1);
                 a++;
             }    
         } else if (a < b) {
-            for (int i = b; i < (a - 1); i++) {
-                multiplicacao *= (b + 1);
+            for (int i = b; i < (a - 1); i--) {
+                printf("teste");
+                multiplicacao *= (b - 1);
                 b++;
             }
         }
         
-        printf("é: %d", multiplicacao);
+        printf("é: %d\n", multiplicacao);
     }
     
+}
+
+void diferentes(int a, int b) {
+    if ((verificar(a) != verificar(b))) {
+        float resultado = 0;
+        if (a > b) {
+            resultado = (float)a/b;
+            printf("O resultado da divisão entre %d e %d é %.2f", a, b, resultado);
+        } else {
+            resultado = (float)b/a;
+            printf("O resultado da divisão entre %d e %d é %.2f", b, a, resultado);
+        }
+    }
 }
 
 int main() {
@@ -109,7 +124,8 @@ int main() {
     scanf("%d", &b);
     positivos(a, b);
     negativos(a, b);
-    
+    diferentes (a, b);
+
     return 0;
 }
 #endif
