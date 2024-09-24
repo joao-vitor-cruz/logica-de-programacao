@@ -136,8 +136,8 @@ int main(){
     scanf("%d", &numLimite);
 
     while (1) {
-        if (num % resultado == 0 || resultado > numLimite) {
-            printf("Menor multiplo de %d maior que %d é %d", num, numLimite, resultado);
+        if (num % resultado == 0 && resultado > numLimite) {
+            printf("Menor multiplo de %d maior que %d é %d\n", num, numLimite, resultado);
             return 0;
         } else {
             resultado++;
