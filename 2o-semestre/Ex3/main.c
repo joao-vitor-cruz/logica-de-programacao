@@ -1,5 +1,5 @@
 #include <stdio.h>
-#define ex2
+#define ex4
 
 #ifdef ex1
 /*1 - Escreva um programa que receba um numero N via teclado. Escreva uma funcao
@@ -61,57 +61,53 @@ int verificar(int n) {
 void positivos(int a, int b) {
     if (verificar(a) == 1 && verificar(b) == 1) {
         int soma = 0;
-        printf ("A soma dos N digitos entre %d e %d ", a, b);
-        if (a < b) {
-            for (int i = a; i < (b - 1); i++) {
-                soma += (a + 1);
-                a++;
-            }    
-        } else if (a > b) {
-            for (int i = b; i < (a - 1); i++) {
-                soma += (b + 1);
-                b++;
-            }
+        
+        if (a > b) {
+            int temp = a;
+            a = b;
+            b = temp;
         }
-        printf("é: %d\n", soma);
+        
+        if (a < b) {
+            for (int i = (a + 1); i < b; i++) {
+                soma += i;
+            }    
+        }
+        
+        printf("A soma dos N digitos entre %d e %d é: %d\n", a, b, soma);
     }
 }
 
-//nao funcionando
 void negativos(int a, int b) {
     if (verificar(a) == 0 && verificar(b) == 0) {
         int multiplicacao = 1;
-        printf ("A multiplicação dos N digitos entre %d e %d ", a, b);
         
         if (a > b) {
-            for (int i = a; i < (b - 1); i++) {
-                printf("%d\n", a+1);
-                multiplicacao *= (a - 1);
-                a++;
-            }    
-        } else if (a < b) {
-            for (int i = b; i < (a - 1); i--) {
-                printf("teste");
-                multiplicacao *= (b - 1);
-                b++;
-            }
+            int temp = a;
+            a = b;
+            b = temp;
+        }
+
+        for (int i = (a + 1); i < b; i++) {
+            multiplicacao *= i;
         }
         
-        printf("é: %d\n", multiplicacao);
+        printf("A multiplicação dos N dígitos entre %d e %d é: %d\n", a, b, multiplicacao);
     }
-    
 }
 
 void diferentes(int a, int b) {
     if ((verificar(a) != verificar(b))) {
         float resultado = 0;
-        if (a > b) {
-            resultado = (float)a/b;
-            printf("O resultado da divisão entre %d e %d é %.2f", a, b, resultado);
-        } else {
-            resultado = (float)b/a;
-            printf("O resultado da divisão entre %d e %d é %.2f", b, a, resultado);
+        
+        if (a < b) {
+            int temp = a;
+            a = b;
+            b = temp;
         }
+        
+        resultado = (float)a/b;
+        printf("O resultado da divisão entre %d e %d é %.2f", a, b, resultado);
     }
 }
 
@@ -128,4 +124,226 @@ int main() {
 
     return 0;
 }
+#endif
+
+#ifdef ex3
+/*3 - Escreva um programa que receba na funcao main() 2 valores inteiro. Escreva
+    uma funcao para cada operacoes aritmeticas e passe como parametro os 2
+    valores recebidos na funcao main(). Retorne os resultados usando o comando
+    return e imprima os 4 resultados no video na funcao main().
+*/
+
+int soma(int a, int b) {
+    return a + b;
+}
+
+int subtracao(int a, int b) {
+    return a - b;
+}
+
+int multiplicacao(int a, int b) {
+    return a * b;
+}
+
+float divisao(int a, int b) {
+    return (float)a / b;
+}
+
+int main() {
+    int a, b;
+    
+    printf("Digite dois valores inteiros.\n");
+    printf("Primeiro valor: ");
+    scanf("%d", &a);
+    printf("Segundo valor: ");
+    scanf("%d", &b);
+    printf("+: %d\n-: %d\n×: %d\n÷: %.1f\n", soma(a,b), subtracao(a,b), multiplicacao(a,b), divisao(a,b));
+    
+    return 0;
+}
+#endif
+
+#ifdef ex4
+/*4 - Reescreva o programa do exercicio anterior para receber via teclado n
+    valores. Os n valores nao sao definidos previamente.
+*/
+
+int soma(int num[], int n) {
+    int resultado;
+    
+    for(int i = 0; i < n; i++){
+        if (i == 0){
+            resultado = num[i];
+        } else {
+        resultado += num[i];
+        }
+    }
+    
+    return resultado;
+}
+
+int subtracao(int num[], int n) {
+   int resultado;
+    
+    for(int i = 0; i < n; i++){
+        if (i == 0){
+            resultado = num[i];
+        } else {
+        resultado -= num[i];
+        }
+    }
+    
+    return resultado;
+}
+
+int multiplicacao(int num[], int n) {
+    int resultado;
+    
+    for(int i = 0; i < n; i++){
+        if (i == 0){
+            resultado = num[i];
+        } else {
+        resultado *= num[i];
+        }
+    }
+    
+    return resultado;
+}
+
+float divisao(int num[], int n) {
+    float resultado;
+    
+    for(int i = 0; i < n; i++){
+        if (i == 0){
+            resultado = num[i];
+        } else {
+        resultado /= (float)num[i];
+        }
+    }
+    
+    return resultado;
+}
+
+int main() {
+    int n;
+    
+    printf("Digite quantos números serão digitados: ");
+    scanf("%d", &n);
+    
+    int num[n];
+    
+    for(int i = 0; i < n; i++){
+        printf("Digite o %dº número: ", i+1);
+        scanf("%d", &num[i]);
+    }
+    
+    printf("+: %d\n-: %d\n×: %d\n÷: %.1f\n", soma(num,n), subtracao(num,n), multiplicacao(num,n), divisao(num,n));
+    return 0;
+}
+#endif
+
+#ifdef ex5
+/*5 - Escreva um programa que receba n valores inteiros via teclado na funcao main().
+    Faca uma calculadora com as 4 operacoes aritmeticas.(utilize o comando switch).
+    As operacoes aritmeticas devem ser funcoes. O resultado acumulado deve ser 
+    mostrado na funcao main().
+*/
+int soma(int num[], int n) {
+    int resultado;
+    
+    for(int i = 0; i < n; i++){
+        if (i == 0){
+            resultado = num[i];
+        } else {
+        resultado += num[i];
+        }
+    }
+    
+    return resultado;
+}
+
+int subtracao(int num[], int n) {
+   int resultado;
+    
+    for(int i = 0; i < n; i++){
+        if (i == 0){
+            resultado = num[i];
+        } else {
+        resultado -= num[i];
+        }
+    }
+    
+    return resultado;
+}
+
+int multiplicacao(int num[], int n) {
+    int resultado;
+    
+    for(int i = 0; i < n; i++){
+        if (i == 0){
+            resultado = num[i];
+        } else {
+        resultado *= num[i];
+        }
+    }
+    
+    return resultado;
+}
+
+float divisao(int num[], int n) {
+    float resultado;
+    
+    for(int i = 0; i < n; i++){
+        if (i == 0){
+            resultado = num[i];
+        } else {
+        resultado /= (float)num[i];
+        }
+    }
+    
+    return resultado;
+}
+
+int main() {
+    int n;
+    char operacao;
+    
+    printf("Digite quantos números serão digitados: ");
+    scanf("%d", &n);
+    
+    int num[n];
+    
+    for(int i = 0; i < n; i++){
+        printf("Digite o %dº número: ", i+1);
+        scanf("%d", &num[i]);
+    }
+    
+    for (int i = 1; i < n; i++) {
+        printf("Escolha uma operação: +, -, *, /");
+        scanf("%c", &operacao);
+        switch (operacao) {
+        
+            case +:
+                soma();
+                break;
+            
+            case -:
+                subtracao();
+                break;
+                
+            case *:
+                multiplicacao();
+                break;
+                
+            case /:
+                divisao();
+                break;
+            
+            default:
+            printf("A expressão é inválida.");
+            break;
+    }
+    return 0;
+}
+
 #endif
