@@ -222,5 +222,50 @@ int main() {
     mostrado na funcao main().
 */
 
+int soma(int num, int resultado) {
+    return resultado + num;
+}
+
+int subtracao(int num, int resultado) {
+    return resultado - num;
+}
+
+int multiplicacao(int num, int resultado) {
+    return resultado * num;
+}
+
+float divisao(int num, int resultado) {
+    return (float)resultado / num;
+}
+
+int main() {
+    int n, num, resultSoma, resultSubt, resultMult;
+    float resultDiv;
+    
+    while (1) {
+        int i = 0;
+        printf("Digite o %dº número: ", i+1);
+        scanf("%d", &num);
+
+        if (i == 0) {
+            resultSoma = num;
+            resultSubt = num;
+            resultMult = num;
+            resultDiv = (float)num;
+            i++;
+            //printf("i = 0 / %d %d %d %.1f\n",resultSoma, resultSubt, resultMult, resultDiv);
+        } else {
+            resultSoma = soma(num, resultSoma);
+            resultSubt = subtracao(num, resultSubt);
+            resultMult = multiplicacao(num, resultMult);
+            resultDiv = divisao(num, resultDiv);
+            //printf("%d %d %d %.1f\n",resultSoma, resultSubt, resultMult, resultDiv);
+        }
+    }
+
+    printf("+: %d\n-: %d\n×: %d\n÷: %.1f\n", resultSoma, resultSubt, resultMult, resultDiv);
+
+    return 0;
+}
 
 #endif
