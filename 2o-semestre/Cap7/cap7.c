@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #define ex3
  
 #ifdef ex1
@@ -205,5 +206,51 @@ int main() {
         Calculo do IMC = peso/(altura*altura).
         estrutura: nome, peso, altura
     */
-
+ 
+struct dados {
+    char nome[30];
+    float peso;
+    float altura;
+};
+ 
+int main() {
+    int x;
+    struct dados imc[4];
+    for(;;) {
+        int opcao;
+        printf("\nCalculador de IMC\n\n1 - receber todos os dados\n2 - imprime todos os dados \n3 - calcula o IMC de todas as pessoas. \n4 - sair\n\n");
+        scanf("%d", &opcao);
+ 
+        switch (opcao) {
+            case 1:
+            for (int i = 0; i < 4; i++) {
+                getchar();
+                printf("Digite os dados para o calculo %d de IMC:\nNome: ", i+1);
+                gets(imc[i].nome);
+                printf("Peso: ");
+                scanf("%f", &imc[i].peso);
+                printf("Altura: ");
+                scanf("%f", &imc[i].altura);
+            }
+            break;
+            case 2:
+                for (int i = 0; i < 4; i++) {
+                    printf("IMC %d:\nNome: %s\nPeso: %.2f\nAltura: %.2f\n\n", i+1, imc[i].nome, imc[i].peso, imc[i].altura);
+                }
+            break;
+            case 3:
+                for (int i = 0; i < 4; i++) {
+                    printf("IMC %d (%s): %.2f\n\n", i+1, imc[i].nome, (imc[i].peso/(imc[i].altura*imc[i].altura)));
+                }
+                break;
+            case 4:
+                exit(0);
+                break;
+ 
+            default:
+                printf("Opção inválida\n\n");
+        }
+    }
+}
+ 
 #endif
