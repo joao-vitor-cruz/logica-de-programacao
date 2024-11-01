@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define ex3
+#define ex1
  
 #ifdef ex1
 /*1 - Escreva um programa que tem uma estrutura da dados com os membros abaixo.
@@ -125,12 +125,62 @@ struct dados {
 
 struct dados data1;
 struct dados data2;
-// Cálculo errado
-void calculoDatas() {
-    int dias1 = data1.dia + (data1.mes * 30) + (data1.ano * 365);
-    int dias2 = data2.dia + (data2.mes * 30) + (data2.ano * 365);
 
-    dias1 > dias2 ? printf("O numero de dias entre as duas datas é: %d", (dias1 - dias2)) : printf("O numero de dias entre as duas datas é: %d", (dias2 - dias1));
+
+int diasNoMes(int mes, int ano) {
+    if (mes == 0) {
+        return 0;
+    }
+    if (mes == 2) {
+        return ((ano % 4 == 0 && ano % 100 != 0) || (ano % 400 == 0)) ? 29 : 28;
+    }
+    return (mes == 4 || mes == 6 || mes == 9 || mes == 11) ? 30 : 31;
+}
+
+void calculoDatas() {
+    int dias1 = 0, dias2 = 0, ano1 = 0, ano2 = 0, mes1 = 0, mes2 = 0, dia1 = 0, dia2 = 0;
+
+    //Soma de dias do ano da data1 e 2
+    for (int i = 1; i <= data1.ano; i++) {
+        if ((i % 4 == 0 && i % 100 != 0) || (i % 400 == 0)) {
+            dias1 += 366;
+            ano1 += 366;
+        } else {
+            dias1 += 365;
+            ano1 += 365;
+        }
+    }
+    
+
+
+    for (int i = 1; i <= data2.ano; i++) {
+        if ((i % 4 == 0 && i % 100 != 0) || (i % 400 == 0)) {
+            dias2 += 366;
+            ano2 += 366;
+        } else {
+            dias2 += 365;
+            ano2 += 365;
+        }
+    }
+
+    //Soma de dias do mes da data1 e 2
+    for (int i = 0; i < data1.mes; i++) {
+        dias1 += diasNoMes((i), data1.ano);
+        mes1 += diasNoMes((i), data1.ano);
+    }
+
+    for (int i = 0; i < data2.mes; i++) {
+        dias2 += diasNoMes((i), data2.ano);
+        mes2 += diasNoMes((i), data2.ano);
+    }
+
+    //Testes
+    dia1 = data1.dia;
+    dias1 += data1.dia;
+    dia2 = data2.dia;
+    dias2 += data2.dia;
+    // printf("dias1 = %d, dias 2 = %d\nmes1 = %d, mes2 = %d\nano1 = %d, ano2 = %d\ndata total1 = %d, data total2 = %d\n", dia1, dia2, mes1, mes2, ano1, ano2, dias1, dias2);
+    dias1 > dias2 ? printf("O numero de dias entre as duas datas é: %d", (dias1 - dias2)) : printf("O numero de dias entre as duas datas e: %d\n", (dias2 - dias1));
 
 }
 
