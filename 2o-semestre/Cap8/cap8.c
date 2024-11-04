@@ -12,6 +12,55 @@
                   float               double              char
              unsigned long       unsigned char
 */
+int main() {
+    int x;
+    do {
+        char A;
+        int B;
+        long C;
+        float D;
+        double E;
+        unsigned char F;
+        unsigned int G;
+        unsigned long H;
+        
+        char *pA = &A;
+        int *pB = &B;
+        long *pC = &C;
+        float *pD = &D;
+        double *pE = &E;
+        unsigned char *pF = &F;
+        unsigned int *pG = &G;
+        unsigned long *pH = &H;
+    
+        printf("Digite um caractere: ");
+        scanf("%c", pA);
+        printf("Digite um numero inteiro: ");
+        scanf("%d", pB);
+        printf("Digite um numero inteiro longo: ");
+        scanf("%ld", pC);
+        printf("Digite um numero decimal: ");
+        scanf("%f", pD);
+        printf("Digite um numero decimal longo: ");
+        scanf("%lf", pE);
+        getchar();
+        printf("Digite um caractere: ");
+        scanf("%c", pF);
+        printf("Digite um inteiro positivo: ");
+        scanf("%u", pG);
+        printf("Digite um inteiro positivo longo: ");
+        scanf("%lu", pH);
+
+        printf("\n        10        20        30        40        50        60        70\n");
+        printf("1234567890123456789012345678901234567890123456789012345678901234567890\n");
+        printf("    %d                 %ld                %f     %lf          \n", B, C, D, E);
+        printf("          %u        %lu         %c             %c \n", G, H, A, F);
+        printf("\nVocê deseja repetir o programa?\nDigite 1 para repitir ou 0 para finalizar: ");
+        scanf("%d", &x);
+        getchar();
+    } while (x == 1);
+    return 0;  
+}
 
 #endif
 
@@ -21,9 +70,29 @@
     sao IGUAIS 1 ou se sao DIFERENTES 0 para a funcao main(). 
     Imprima o resultado na funcao main(). Declare os vetores como variavel global
 */
+char str1[11];
+char str2[11];
 
+int comparacao() {
+    for (i = 0; filmePesquisado[i] != '\0'; i++) {
+        if (filmePesquisado[i] != filme1[i]) {
+            break;
+        }
+    }
+    if (filmePesquisado[i] == '\0' && filme1[i] == '\0')
+        printf("%s\n%d unidade(s)\n", filme1, quantidade1);
+}
+
+int main() {
+    printf("Digite a primeira palavra: ");
+    gets(str1);
+    printf("Digite a segunda palavra: ");
+    gets(str2);
+    
+    comparacao();
+    return 0;
+}
 #endif
-
 #ifdef ex3
 /*3 - Escreva um programa que receba uma letra via teclado usando ponteiro. Escreva 
     uma funcao que pesquise se esta letra existe no vetor abaixo usando ponteiros. 
