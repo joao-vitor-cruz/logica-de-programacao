@@ -202,7 +202,7 @@ struct dados *pEndereco = &endereco;
 void receberDados() {
     for (int i = 0; i < 4; i++){
         printf("Digite seu nome: ");
-        gets(((*pEndereco+i)).nome);
+        scanf(&(*pEndereco+i)->nome);
         printf("Digite seu endereço: ");
         gets(((*pEndereco+i)).end);
         printf("Digite sua cidade: ");
