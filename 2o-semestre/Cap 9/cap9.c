@@ -1,5 +1,5 @@
 #include <stdio.h>
-#define ex3
+#define ex6
 
 /*1 - Escreva um programa que tem uma estrutura da dados com os membros abaixo.
     A estrutura e' uma variavel LOCAL na funcao main(). Receba via teclado o
@@ -194,8 +194,7 @@ int main() {
     return 0;
 }
 #endif
-/*
-4 - Escreva um programa que receba uma letra via teclado usando ponteiro. Escreva 
+/*4 - Escreva um programa que receba uma letra via teclado usando ponteiro. Escreva 
     uma funcao que pesquise se esta letra existe no vetor abaixo usando ponteiros. 
     Imprima o resultado da pesquisa no video na funcao main(). Passe como informacao
     para a funcao a letra digitada e o vetor usando ponteiros e faca a pesquisa 
@@ -204,6 +203,37 @@ int main() {
 
     vetor -> b,d,f,h,j,k,m,o,q,s,u,w,y
 */
+#ifdef ex4
+
+int comparacao(char *pontLetra, char (*pontVetor)[13]) {
+    for(int i = 0; i < 13; i++) {
+        if ((*pontVetor)[i] == *pontLetra) {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+int main() {
+    int x;
+    
+    do {
+        char letra;
+        char *pontLetra = &letra;
+        char vetor[13] = {'b','d','f','h','j','k','m','o','q','s','u','w','y'};
+        char (*pontVetor)[13] = &vetor;
+        printf("Digite uma letra: ");
+        scanf("%c", pontLetra);
+        printf("voce digitou %c\n", *pontLetra);
+        comparacao(pontLetra, pontVetor) == 1 ? printf("A letra está no vetor de caracteres.\n") : printf("A letra não está no vetor de caracteres\n");
+        printf("O programa foi finalizado. Digite 0 para encerrar ou 1 para repetir: ");
+        scanf("%d", &x);
+        getchar();
+    } while (x == 1);
+    return 0;
+}
+
+#endif
 
 /*
 5 - Escreva um programa com a estrutura abaixo. Defina um vetor de estruturas
@@ -212,8 +242,170 @@ int main() {
     video em outra funcao. Faca um menu. Utilize ponteiros nas funcoes.
     Coloque no menu a opcao de sair tambem. Utilize o comando switch.
     (vetor de estruturas)
-     estutura: nome, end, cidade, estado, cep   
+     estutura: nome, end, cidade, estado, cep
+*/
+#ifdef ex5
+struct dados {
+  char nome[30];
+  char end[50];
+  char cidade[20];
+  char estado[15];
+  char cep[9];
+};
+
+void registrar(struct dados (*prt)[4]) {
+    for(int i = 0; i<4; i++) {
+        printf("\nDigite o nome do %do endereco: ", (i+1));
+        scanf("%s", (*prt)[i].nome);
+        printf("Digite o endereço do %do endereco: ", (i+1));
+        scanf("%s", (*prt)[i].end);
+        printf("Digite o cidade do %do endereco: ", (i+1));
+        scanf("%s", (*prt)[i].cidade);
+        printf("Digite o estado do %do endereco: ", (i+1));
+        scanf("%s", (*prt)[i].estado);
+        printf("Digite o CEP do %do endereco: ", (i+1));
+        scanf("%s", (*prt)[i].cep);
+    }
+}
+
+void imprimir(struct dados (*prt)[4]) {
+    for(int i = 0; i<4; i++) {
+        printf("\n%do endereco: \n\nNome: %s\nEndereço: %s\nCidade: %s\nEstado: %s\nCEP: %s\n", (i+1), (*prt)[i].nome, (*prt)[i].end, (*prt)[i].cidade, (*prt)[i].estado, (*prt)[i].cep);
+    }
+}
+
+int main() {
+    int x = 0;
+    while (1) {
+        struct dados endereco[4];
+        struct dados (*prt)[4] = &endereco;
+        int opcao;
+        printf("Escolha uma opção:\n\n1- Registrar endereços\n2- Listar endereços\n3- Sair\n\n");
+        scanf("%d", &opcao);
+        
+        switch (opcao) {
+
+            case 1: registrar(prt);x++; break;
+            case 2:
+                if (x > 0) {
+                    imprimir(prt);
+                } else {
+                    printf("Você não registrou nenhum filme.\n\n");
+                }
+                break;
+            case 3: return 0;
+            default: printf("Opção inválida");
+        }
+    }
+}
+#endif
+
+
+/*
+6 - Acrescente ao menu do exercicio anterior as funcoes de procura, altera e
+    exclui um registro sempre usando ponteiros.
 */
 
-//6 - Acrescente ao menu do exercicio anterior as funcoes de procura, altera e
-//exclui um registro sempre usando ponteiros.
+#ifdef ex6
+struct dados {
+  char nome[30];
+  char end[50];
+  char cidade[20];
+  char estado[15];
+  char cep[9];
+};
+
+void registrar(struct dados (*prt)[4]) {
+    for(int i = 0; i<4; i++) {
+        printf("\nDigite o nome do %do endereco: ", (i+1));
+        scanf("%s", (*prt)[i].nome);
+        printf("Digite o endereço do %do endereco: ", (i+1));
+        scanf("%s", (*prt)[i].end);
+        printf("Digite o cidade do %do endereco: ", (i+1));
+        scanf("%s", (*prt)[i].cidade);
+        printf("Digite o estado do %do endereco: ", (i+1));
+        scanf("%s", (*prt)[i].estado);
+        printf("Digite o CEP do %do endereco: ", (i+1));
+        scanf("%s", (*prt)[i].cep);
+    }
+}
+
+int pesquisar(struct dados (*prt)[4]) {
+    char nomeEndereco[30];
+    printf("\nDigite o nome do endereco a ser pesquisado: ");
+    scanf("%s", nomeEndereco);
+    for(int i = 0; i<4; i++) {
+        for (int j = 0;(*prt)[i].nome[j] != '\0' && nomeEndereco[j] != '\0'; j++) {
+            if ((*prt)[i].nome[j] == nomeEndereco[i]){
+                return i;
+            }
+        }
+    }
+    return -1;
+}
+
+void alterar(struct dados (*prt)[4]) {
+    int filmePesquisado = pesquisar(prt);
+    printf("\nDigite o nome do endereco: ");
+    scanf("%s", (*prt)[filmePesquisado].nome);
+    printf("Digite o endereço do endereco: ");
+    scanf("%s", (*prt)[filmePesquisado].end);
+    printf("Digite o cidade do endereco: ");
+    scanf("%s", (*prt)[filmePesquisado].cidade);
+    printf("Digite o estado do endereco: ");
+    scanf("%s", (*prt)[filmePesquisado].estado);
+    printf("Digite o CEP do endereco: ");
+    scanf("%s", (*prt)[filmePesquisado].cep);
+}
+
+void imprimir(struct dados (*prt)[4]) {
+    for(int i = 0; i<4; i++) {
+        printf("\n%do endereco: \n\nNome: %s\nEndereço: %s\nCidade: %s\nEstado: %s\nCEP: %s\n", (i+1), (*prt)[i].nome, (*prt)[i].end, (*prt)[i].cidade, (*prt)[i].estado, (*prt)[i].cep);
+    }
+}
+
+void exclui(struct dados (*prt)[4]) {
+    int filmePesquisado = pesquisar(prt);
+    (*prt)[filmePesquisado].nome[0] = '\0';
+    (*prt)[filmePesquisado].end[0] = '\0';
+    (*prt)[filmePesquisado].cidade[0] = '\0';
+    (*prt)[filmePesquisado].estado[0] = '\0';
+    (*prt)[filmePesquisado].cep[0] = '\0';
+    printf("Excluído com sucesso.\n");
+}
+
+int main() {
+    int x = 0;
+    while (1) {
+        struct dados endereco[4];
+        struct dados (*prt)[4] = &endereco;
+        int opcao, filmePesquisado;
+        printf("Escolha uma opção:\n\n1- Registrar endereços\n2- Listar endereços\n3- Procurar registros\n4- Alterar registros\n5- Excluir registros\n6- Sair\n\n");
+        scanf("%d", &opcao);
+        
+        switch (opcao) {
+
+            case 1: registrar(prt);x++; break;
+            case 2:
+                if (x > 0) {
+                    imprimir(prt);
+                } else {
+                    printf("Você não registrou nenhum filme.\n\n");
+                }
+                break;
+            case 3: filmePesquisado = pesquisar(prt);
+            if (filmePesquisado == -1){
+                printf("Filme nao foi encontrado.\n");
+            } else {
+                printf("Nome: %s\nEndereço: %s\nCidade: %s\nEstado: %s\nCEP: %s\n", (*prt)[filmePesquisado].nome, (*prt)[filmePesquisado].end, (*prt)[filmePesquisado].cidade, (*prt)[filmePesquisado].estado, (*prt)[filmePesquisado].cep);
+            }
+            break;
+            case 4: alterar(prt); break;
+            case 5: exclui(prt); break;
+            case 6: return 0;
+            default: printf("Opção inválida");
+        }
+    }
+}
+
+#endif

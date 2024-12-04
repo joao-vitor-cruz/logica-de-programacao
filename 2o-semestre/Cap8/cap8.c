@@ -1,5 +1,5 @@
 #include <stdio.h>
-#define ex5
+#define ex6
 
 #ifdef ex1
 /*1 - Escreva um programa que receba via teclado usando ponteiros um char,
@@ -197,26 +197,26 @@ struct dados {
 };
 
 struct dados endereco[4];
-struct dados *pEndereco = &endereco;
+struct dados (*pEndereco)[4] = &endereco;
 
 void receberDados() {
     for (int i = 0; i < 4; i++){
         printf("Digite seu nome: ");
-        scanf(&(*pEndereco+i)->nome);
+        scanf("%s", (*pEndereco+i)->nome);
         printf("Digite seu endereço: ");
-        gets(((*pEndereco+i)).end);
+        scanf("%s", (*pEndereco+i)->end);
         printf("Digite sua cidade: ");
-        gets(((*pEndereco+i)).cidade);
+        scanf("%s", (*pEndereco+i)->cidade);
         printf("Digite seu estado: ");
-        gets(((*pEndereco+i)).estado);
+        scanf("%s", (*pEndereco+i)->estado);
         printf("Digite seu CEP: ");
-        gets(((*pEndereco+i)).cep);
+        scanf("%s", (*pEndereco+i)->cep);
     }
 }
 
 void imprimirDados() {
     for (int i = 0; i < 4; i++){
-        printf("Seu nome é %s.\nSeu endereço é:\n%s\n%s\n%s\n%s\n", endereco.nome, endereco.end, endereco.cidade, endereco.estado, endereco.cep);
+        printf("Seu nome é %s.\nSeu endereço é:\n%s\n%s\n%s\n%s\n", endereco[i].nome, endereco[i].end, endereco[i].cidade, endereco[i].estado, endereco[i].cep);
     }
 }
 
@@ -240,5 +240,133 @@ int main() {
     usando ponteiros. Utilize um vetor de estruturas.
     	estrutura: dia, mes e ano
 */
+struct dados {
+    int dia;
+    int mes;
+    int ano;
+};
+
+
+int diasNoMes(int mes, int ano) {
+    if (mes == 0) {
+        return 0;
+    }
+    if (mes == 2) {
+        return ((ano % 4 == 0 && ano % 100 != 0) || (ano % 400 == 0)) ? 29 : 28;
+    }
+    return (mes == 4 || mes == 6 || mes == 9 || mes == 11) ? 30 : 31;
+}
+
+void calculoDatas(struct dados *prt1, struct dados *prt2) {
+    int dias1 = 0, dias2 = 0, ano1 = 0, ano2 = 0, mes1 = 0, mes2 = 0, dia1 = 0, dia2 = 0;
+
+    //Soma de dias do ano da data1 e 2
+    for (int i = 1; i <= (*prt1).ano; i++) {
+        if ((i % 4 == 0 && i % 100 != 0) || (i % 400 == 0)) {
+            dias1 += 366;
+            ano1 += 366;
+        } else {
+            dias1 += 365;
+            ano1 += 365;
+        }
+    }
+    
+
+
+    for (int i = 1; i <= (*prt2).ano; i++) {
+        if ((i % 4 == 0 && i % 100 != 0) || (i % 400 == 0)) {
+            dias2 += 366;
+            ano2 += 366;
+        } else {
+            dias2 += 365;
+            ano2 += 365;
+        }
+    }
+
+    //Soma de dias do mes da data1 e 2
+    for (int i = 0; i < (*prt1).mes; i++) {
+        dias1 += diasNoMes((i), (*prt1).ano);
+        mes1 += diasNoMes((i), (*prt1).ano);
+    }
+
+    for (int i = 0; i < (*prt2).mes; i++) {
+        dias2 += diasNoMes((i), (*prt2).ano);
+        mes2 += diasNoMes((i), (*prt2).ano);
+    }
+
+    //Testes
+    dia1 = (*prt1).dia;
+    dias1 += (*prt1).dia;
+    dia2 = (*prt2).dia;
+    dias2 += (*prt2).dia;
+    // printf("dias1 = %d, dias 2 = %d\nmes1 = %d, mes2 = %d\nano1 = %d, ano2 = %d\ndata total1 = %d, data total2 = %d\n", dia1, dia2, mes1, mes2, ano1, ano2, dias1, dias2);
+    dias1 > dias2 ? printf("O numero de dias entre as duas datas é: %d", (dias1 - dias2)) : printf("O numero de dias entre as duas datas e: %d\n", (dias2 - dias1));
+
+}
+
+int main() {
+    int x;
+    do {
+        struct dados data1;
+        struct dados *prt1 = &data1;
+        struct dados data2;
+        struct dados *prt2 = &data2;
+
+        do {
+            printf("Digite a primeira data:\nDia: ");
+            scanf("%d", &(*prt1).dia);
+            if (data1.dia < 1 || data1.dia > 31) {
+                printf("Dia inválido! Tente novamente\n");
+            }
+        } while (data1.dia < 1 || data1.dia > 31);
+
+        do {
+            printf("Mes: ");
+            scanf("%d", &(*prt1).mes);
+            if (data1.mes < 1 || data1.mes > 12) {
+                printf("Mes inválido! Tente novamente\n");
+            }
+        } while (data1.mes < 1 || data1.mes > 12);
+
+        do {
+            printf("Ano: ");
+            scanf("%d", &(*prt1).ano);
+            if (data1.ano < 0) {
+                printf("Ano inválido! Tente novamente\n");
+            }
+        } while (data1.ano < 0);
+
+        do {
+            printf("Digite a segunda data:\nDia: ");
+            scanf("%d", &(*prt2).dia);
+            if (data2.dia < 1 || data2.dia > 31) {
+                printf("Dia inválido! Tente novamente\n");
+            }
+        } while (data2.dia < 1 || data2.dia > 31);
+
+        do {
+            printf("Mes: ");
+            scanf("%d", &(*prt2).mes);
+            if (data2.mes < 1 || data2.mes > 12) {
+                printf("Mes inválido! Tente novamente\n");
+            }
+        } while (data2.mes < 1 || data2.mes > 12);
+
+        do {
+            printf("Ano: ");
+            scanf("%d", &(*prt2).ano);
+            if (data2.ano < 0) {
+                printf("Ano inválido! Tente novamente\n");
+            }
+        } while (data2.ano < 0);
+        
+        calculoDatas(prt1, prt2);
+
+        printf("\nVocê deseja repetir o programa?\nDigite 1 para repitir ou 0 para finalizar: ");
+        scanf("%d", &x);
+        getchar();  
+    } while (x == 1);
+    return 0;
+}
 
 #endif
